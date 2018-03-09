@@ -1,0 +1,15 @@
+{
+  "name": "cs-546-lab3",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "node app.js"
+  },
+  "author": "Keith Morel 10406482",
+  "license": "ISC",
+  "dependencies": {
+    "bluebird": "^3.5.1",
+    "fs-extra": "^5.0.0"
+  }
+}

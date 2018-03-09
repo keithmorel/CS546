@@ -1,0 +1,20 @@
+[
+    {
+      "schoolName": "Long Pond School",
+      "degree": "Middle School",
+      "favoriteClass": "My Favorite Class in middle school was probably our 'Computer class' which was basically just learning Excel and Powerpoint",
+      "favoriteMemory": "A good memory was our principal's mantra that he repeated at all big events at the school: 'Good, better, best, never let it rest, until the good gets better and the better gets best.'"
+    },
+    {
+      "schoolName": "Newton High School",
+      "degree": "High School",
+      "favoriteClass": "My Favorite Class in high school was, believe it or not, AP Calculus.",
+      "favoriteMemory": "Many good memories came from that AP Calculus class because the teacher of that class was most people's favorite. He would draw random funny sketches on the board and tell weird stories, all of which made that class much better than it sounds."
+    },
+    {
+      "schoolName": "Stevens Institute of Technology",
+      "degree": "Hopefully a CS degree in 2020",
+      "favoriteClass": "My Favorite class so far has been CS115.",
+      "favoriteMemory": "My best memories from that class were just the various tangents Dr. Borowski would go off on."
+    }
+]
