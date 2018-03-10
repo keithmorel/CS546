@@ -20,8 +20,8 @@ router.get("/:id", async (req, res) => {
     if (!req.params.id) throw "You must provide an id to search for!";
 
     const recipesCollection = await recipes();
-    const item = await recipesCollection.findOne({_id: req.params.id });
-    if (item === null) throw "Can't find that item!";
+    const item = await recipesCollection.findOne({ _id: req.params.id });
+    if (item === null) throw "Can't find that recipe!";
     res.send(item);
 });
 
@@ -51,11 +51,11 @@ router.put("/:id", async (req, res) => {
 
     const updated_recipe = await recipesCollection.updateOne(
         { _id: req.params.id },
-        { $set: {title: req.body.title, ingredients: req.body.ingredients, steps: req.body.step} }
+        { $set: {title: req.body.title, ingredients: req.body.ingredients, steps: req.body.steps} }
     );
-    if (updated_recipe.modifiedCount === 0) throw "Could not update task successfully";
+    if (updated_recipe.modifiedCount === 0) throw "Could not update recipe successfully";
 
-    res.send(recipesCollection.findOne({ _id: req.params.id})); 
+    res.send(await recipesCollection.findOne({ _id: req.params.id }));
 })
 
 // Update only supplied changes route
@@ -67,29 +67,29 @@ router.patch ("/:id", async (req, res) => {
     if (to_update === null) throw "Can't find that item!";
 
     // Update fields provided
-    if (req.body.title !== null) {
+    if (req.body.title !== to_update.title) {
         const updated_recipe = await recipesCollection.updateOne(
             { _id: req.params.id},
             { $set: {title: req.body.title} }
         );
-        if (updated_recipe.modifiedCount === 0) throw "Could not update task successfully";
+        if (updated_recipe.modifiedCount === 0) throw "Could not update title successfully";
     }    
-    if (req.body.ingredients !== null) {
+    if (JSON.stringify(req.body.ingredients) !== JSON.stringify(to_update.ingredients)) {
         const updated_recipe = await recipesCollection.updateOne(
             { _id: req.params.id},
             { $set: {ingredients: req.body.ingredients} }
         );
-        if (updated_recipe.modifiedCount === 0) throw "Could not update task successfully";
+        if (updated_recipe.modifiedCount === 0) throw "Could not update ingredients successfully";
     }
-    if (req.body.steps !== null) {
+    if (JSON.stringify(req.body.steps) !== JSON.stringify(to_update.steps)) {
         const updated_recipe = await recipesCollection.updateOne(
             { _id: req.params.id},
             { $set: {steps: req.body.steps} }
         );
-        if (updated_recipe.modifiedCount === 0) throw "Could not update task successfully";
+        if (updated_recipe.modifiedCount === 0) throw "Could not update steps successfully";
     }
 
-    res.send(recipesCollection.findOne({ _id: req.params.id }));    
+    res.send(await recipesCollection.findOne({ _id: req.params.id }));
 })
 
 // Delete route
@@ -98,9 +98,7 @@ router.delete("/:id", async (req, res) => {
 
     const recipesCollection = await recipes();
     const to_delete = await recipesCollection.removeOne({ _id: req.params.id });
-    if (to_delete.deletedCount === 0) throw "Can't find that item!";
-
-    return;
+    if (to_delete.deletedCount === 0) throw "Can't find that recipe!";
 })
 // Error route
 router.get("*", (req, res) => {
