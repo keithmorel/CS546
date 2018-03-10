@@ -7,6 +7,7 @@ const uuidv1 = require("uuid/v1");
 router.get("/", async (req, res) => {
     const recipesCollection = await recipes(); 
     const allRecipes = await recipesCollection.find({}).toArray();
+    if (!allRecipes) throw "No Recipes Found";
     res.send(allRecipes.map(recipe => {
         return { _id: recipe._id, title: recipe.title };
     }));
@@ -16,7 +17,7 @@ router.get("/", async (req, res) => {
 
 // Get single recipe route
 router.get("/:id", async (req, res) => {
-    if (!id) throw "You must provide an id to search for!";
+    if (!req.params.id) throw "You must provide an id to search for!";
 
     const recipesCollection = await recipes();
     const item = await recipesCollection.findOne({_id: req.params.id });
@@ -37,12 +38,12 @@ router.post("/", async (req, res) => {
    const insertInfo = await recipesCollection.insertOne(newRecipe);
    if (insertInfo.insertedCount === 0) throw "Failed to add recipe";
    
-   res.send(recipesCollection.findOne({ _id: uuid }));
+   res.send(newRecipe);
 })
 
 // Update whole recipe route
 router.put("/:id", async (req, res) => {
-    if (!id) throw "You must provide an id to put!";
+    if (!req.params.id) throw "You must provide an id to put!";
 
     const recipesCollection = await recipes();
     const to_update = await recipesCollection.findOne({ _id: req.params.id });
@@ -54,12 +55,12 @@ router.put("/:id", async (req, res) => {
     );
     if (updated_recipe.modifiedCount === 0) throw "Could not update task successfully";
 
-    req.send(recipesCollection.findOne({ _id: req.params.id})); 
+    res.send(recipesCollection.findOne({ _id: req.params.id})); 
 })
 
 // Update only supplied changes route
 router.patch ("/:id", async (req, res) => {
-    if (!id) throw "You must provide an id to patch!";
+    if (!req.params.id) throw "You must provide an id to patch!";
 
     const recipesCollection = await recipes();
     const to_update = await recipesCollection.findOne({ _id: req.params.id });
@@ -88,12 +89,12 @@ router.patch ("/:id", async (req, res) => {
         if (updated_recipe.modifiedCount === 0) throw "Could not update task successfully";
     }
 
-    req.send(recipesCollection.findOne({ _id: req.params.id }));    
+    res.send(recipesCollection.findOne({ _id: req.params.id }));    
 })
 
 // Delete route
 router.delete("/:id", async (req, res) => {
-    if (!id) throw "You must provide an id to delete!";
+    if (!req.params.id) throw "You must provide an id to delete!";
 
     const recipesCollection = await recipes();
     const to_delete = await recipesCollection.removeOne({ _id: req.params.id });
