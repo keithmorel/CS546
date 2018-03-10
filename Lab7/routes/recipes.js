@@ -99,6 +99,8 @@ router.delete("/:id", async (req, res) => {
     const recipesCollection = await recipes();
     const to_delete = await recipesCollection.removeOne({ _id: req.params.id });
     if (to_delete.deletedCount === 0) throw "Can't find that recipe!";
+
+    res.status(200).send();
 })
 // Error route
 router.get("*", (req, res) => {
