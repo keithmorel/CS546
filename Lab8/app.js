@@ -7,6 +7,7 @@ const configRoutes = require("./routes");
 const expshbs = require('express-handlebars');
 
 app.use("/public", static);
+app.use(bodyParser.urlencoded());
 app.use(bodyParser.json());
 
 app.engine('handlebars', expshbs({defaultLayout: 'main'}));

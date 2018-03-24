@@ -1,0 +1,15 @@
+<main>
+    <h1>The Palindrome Results!</h1>
+
+    {{#if is_palindrome}}
+        <p class="success">{{ to_check }}</p>
+        <p>It's a palindrome!</p>
+    {{/if}}
+
+    {{#if is_not_palindrome}}
+        <p class="failure">{{ to_check }}</p>
+        <p>It's not a palindrome!</p>
+    {{/if}}
+
+    <a href="/">Try another palindrome</a>
+</main>

@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>The Best Palindrome Checker in the World!</title>
+    <link rel="stylesheet" type="text/css" href="/public/site.css">
+</head>
+
+<body>
+    <main>
+        <h1>The Best Palindrome Checker in the World!</h1>
+        <p>
+            A palindrome is a phrase that is spelled the same way, backwards and forwards (ignoring spacing and punctuation; only alphanumeric characters matter).
+            This website will take in anything that you type into this form, and tell you whether it's a palindrome or not.
+        </p>
+        <form name="palindromeChecker" action="/result" method="POST">
+            <label for="word">Input a word to check:</label>
+            <input type="text" id="word" name="text-to-test">
+            <button type="submit" value="Submit">Submit</button>
+        </form>
+    </main>
+</body>
+
+</html>
