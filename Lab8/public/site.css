@@ -13,7 +13,6 @@ h1 {
 
 p {
     font-size: 16pt;
-    font-style: italic;
 }
 
 label {
@@ -27,8 +26,17 @@ form {
 
 .success {
     color: #28a745;
+    font-style: bold;
+    font-size: 18pt;
 }
 
 .failure {
     color: #dc3545;
+    font-style: bold;
+    font-size: 18pt;
+}
+
+.error {
+    color: #dc3545;
+    font-style: normal
 }

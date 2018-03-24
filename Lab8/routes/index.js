@@ -11,6 +11,7 @@ const constructorMethod = app => {
     // If no input is provided
     if (req.body['text-to-test'] == '') {
       res.status(400).render('templates/error', { Title: "Error" });
+      return;
     }
 
     // Get the palindrome to test from the form
