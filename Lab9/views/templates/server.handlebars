@@ -1,0 +1,26 @@
+<div class="row">
+    <form class="dynamicForm" method="POST">
+        <div class="form-group">
+            <textarea id="phrase" name="phrase" placeholder="Enter a phrase to check"></textarea>
+        </div>
+        <div class="form-group">
+            <button type="submit" value="Submit">Submit</button>
+        </div>
+    </form>
+</div>
+
+<div class="form-group">
+    <p>Blue Phrases are Palindromes, Red are not</p>
+    <ol id="attempts" class="attempts"></ol>
+</div>
+
+<script>  
+    let li = document.createElement("li");
+    let phraseVal = document.createTextNode("{{ phrase }}");
+    li.appendChild(phraseVal);
+
+    if ({{ palindromeCheck}}) li.setAttribute("class", "is-palindrome");
+    else li.setAttribute("class", "not-palindrome");
+
+    document.getElementById("attempts").appendChild(li);
+</script>
