@@ -9,7 +9,6 @@ router.get("/", (req, res) => {
 
 router.post("/", (req, res) => {
     let phrase = req.body.phrase;
-    console.log(phrase);
     const is_palindrome = palindromeChecker.check(phrase);
     res.render("templates/server", {
         phrase: phrase,

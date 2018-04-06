@@ -1,5 +1,5 @@
 <div class="row">
-    <form class="dynamicForm" method="POST">
+    <form class="dynamicForm" method="POST" onsubmit="addAttempt()">
         <div class="form-group">
             <textarea id="phrase" name="phrase" placeholder="Enter a phrase to check"></textarea>
         </div>
@@ -14,13 +14,17 @@
     <ol id="attempts" class="attempts"></ol>
 </div>
 
-<script>  
-    let li = document.createElement("li");
-    let phraseVal = document.createTextNode("{{ phrase }}");
-    li.appendChild(phraseVal);
+<script>
+    function addAttempt(event) {
+        event.preventDefault();
+        const palindromeCheck = check({{phrase}});
+        let li = document.createElement("li");
+        let phraseVal = document.createTextNode({{phrase}});
+        li.appendChild(phraseVal);
 
-    if ({{ palindromeCheck}}) li.setAttribute("class", "is-palindrome");
-    else li.setAttribute("class", "not-palindrome");
+        if ({{palindromeCheck}}) li.setAttribute("class", "is-palindrome");
+        else li.setAttribute("class", "not-palindrome");
 
-    document.getElementById("attempts").appendChild(li);
+        document.getElementById("attempts").appendChild(li);
+    }
 </script>

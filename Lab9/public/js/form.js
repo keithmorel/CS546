@@ -25,9 +25,6 @@ import { stat } from "fs";
 
         staticForm.addEventListener("submit", event => {
             event.preventDefault();
-                const phraseValue = phrase.value;
-                const palindromeCheck = check(phraseValue);
-                return palindromeCheck;
         });
     }
 })();
