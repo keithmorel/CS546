@@ -49,6 +49,11 @@ ol {
     font-size: 18pt;
 }
 
+#errorArea {
+    color: orange;
+    font-size: 24pt;
+}
+
 footer {
     position: absolute;
     margin-bottom: 0;
